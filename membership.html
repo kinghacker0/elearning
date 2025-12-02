@@ -147,14 +147,17 @@
   </div>
 </div>
 
-<!-- LIVE SECTION -->
 <div class="container" data-category="live" id="live" style="margin-top:48px;">
   <h2 style="font-size:22px; margin-bottom:12px;">Upcoming Live Batch</h2>
 
   <div class="grid grid-cols-1 md:flex gap-2 mt-[40px] "> <div class="w-full md:w-[400px] mt-[28px] md:mt-0 order-1 md:order-2"> 
     <div class="md:border border-[#11AFEA]"> <div> 
-      <a href="https://elearning.hackersking.com/Batch"> <img src="https://hackersking.b-cdn.net/Bootcamp/Bootcamp.png" alt="live-course" loading="lazy" width="505" height="276" class="w-full" /> </a> </div> 
-      <div class="py-2 md:px-2"> <div class="text-secondary/50 text-sm22 font-medium tracking-[1.5px]"> 5 Weeks Live Bootcamp </div> <h3 class="text-secondary text-base3 mt-1 mb-1"> Ethical Hacking Bootcamp </h3>
+      <a href="https://elearning.hackersking.com/Batch"> 
+        <img src="https://hackersking.b-cdn.net/Bootcamp/Bootcamp.png" alt="live-course" loading="lazy" width="505" height="276" class="w-full" /> 
+      </a> 
+    </div> 
+      <div class="py-2 md:px-2"> <div class="text-secondary/50 text-sm22 font-medium tracking-[1.5px]"> 5 Weeks Live Bootcamp </div> 
+        <h3 class="text-secondary text-base3 mt-1 mb-1"> Ethical Hacking Bootcamp </h3>
         <div class="flex justify-between items-center mb-1"> 
           <div class="flex items-center"> 
             <div class="text-18 leading-[1.18] font-bold md:text-20 text mr-[10px] md:mr-2"> ₹5999 </div>
@@ -165,7 +168,8 @@
             <li class="mb-0"> Resume Building & Job Assistance 100% </li>
             <li class="mb-0"> Live Doubts Solving </li>
           </ul> </div> 
-        <a href="https://elearning.hackersking.com/Batch"> <button type="button" class="button py-[20px] px-[10px] bg-[#11AFEA] text-white w-full text-16 leading-none font-semibold">
+        <a href="https://elearning.hackersking.com/Batch"> 
+          <button type="button" class="button py-[20px] px-[10px] bg-[#11AFEA] text-white w-full text-16 leading-none font-semibold">
           <span class="button-content">Regsiter Now</span>
        
         </button> 
@@ -395,6 +399,64 @@
                     </div>
                   </div>
 
+                                         <script>
+  (function () {
+    const buttons = document.querySelectorAll('.category-box');
+
+    if (!buttons || buttons.length === 0) {
+      console.warn('No category buttons found: selector ".category-box" returned none.');
+      return;
+    }
+
+    function clearActive() {
+      buttons.forEach(b => {
+        b.classList.remove('active');
+        // reset inline styles for inactive
+        b.style.background = '#f5f5f5';
+        b.style.color = '#333';
+      });
+    }
+
+    function setActive(el) {
+      el.classList.add('active');
+      el.style.background = '#007bff';
+      el.style.color = '#fff';
+    }
+
+    function handleActivation(targetId) {
+      if (!targetId || targetId === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.getElementById(targetId);
+      if (!target) {
+        console.error('Scroll target not found for id:', targetId);
+        return;
+      }
+      // offset example if you have a fixed header: window.scrollBy(0, -80) after scrollIntoView...
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    buttons.forEach(btn => {
+      // click
+      btn.addEventListener('click', function () {
+        clearActive();
+        setActive(this);
+
+        const targetId = this.getAttribute('data-target');
+        handleActivation(targetId);
+      });
+
+      // keyboard support (Enter / Space)
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  })();
+</script>
                                              
             <!-- ---- editing---- -->
             
